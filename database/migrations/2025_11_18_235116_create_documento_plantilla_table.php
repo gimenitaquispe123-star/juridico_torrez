@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('documento_plantilla', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('documento_id');
+            $table->unsignedBigInteger('plantilla_id');
+
+            $table->foreign('documento_id')->references('id_documento')->on('documentos')->onDelete('cascade');
+            $table->foreign('plantilla_id')->references('id')->on('plantillas')->onDelete('cascade');
+
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('documento_plantilla');
+    }
+};
+

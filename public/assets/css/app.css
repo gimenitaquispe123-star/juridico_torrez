@@ -1,0 +1,180 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "poppins", sans-serif;
+}
+:root{
+	--prymary-color:#c0c0c0;
+	--secondary-color:hsl(0, 0%, 2%);
+}
+body {
+	
+	font-size: 14px;
+	color: #504841;
+	letter-spacing: .5px;
+	background: #f7f7ff;
+	overflow-x: hidden;
+	font-family: Roboto, sans-serif;
+	background: url('https://media.istockphoto.com/id/881834438/es/foto/justicia.jpg?s=1024x1024&w=is&k=20&c=9nlK1qAgRj0TmxqnZGApQH3Ep_khg7hq8tNIhEPiMhE=') no-repeat center center;
+	background-size: cover;  
+	background-attachment: fixed; 
+	height: 100vh;  
+	margin: 0;  
+	background-color: cover;
+}
+@media (min-width: 601px) and (max-width: 1200px) {
+    body {
+        font-size: 24px; /
+    }
+
+    .header {
+        font-size: 24px;
+    }
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+.wrapper {
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 100vh;
+	padding: 1rem;
+}
+.login-wrapper{
+	position:relative;
+	padding:4rem 1.5rem 1rem 1.5rem;
+	border:2px solid var(--prymary-color);
+	border-radius: 15px;
+	backdrop-filter: blur(25px);
+	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.2);
+	color:var(--secondary-color);
+}
+.login-header{
+	display:flex;
+	position:absolute;
+	top:0;
+	left:50%;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1.5rem;
+	transform: translateX(-50%);
+	border-radius: 0 0 20px 20px;
+	background-color: var(--prymary-color);
+	color: white;
+	font-size: clamp(1rem, 6vw, 3rem);
+}
+.login-header::before {
+content: "";
+position:absolute;
+top:0;
+left:-30px;
+width: 30px;
+height: 30px;
+border-top-right-radius: 50%;
+background: transparent;
+box-shadow: 15px 0 0 0 var(--prymary-color);
+}
+.login-header::after{
+content: "";
+position: absolute;
+top:0;
+right:-30px;
+width: 30px;
+height: 30px;
+border-top-left-radius: 50%;
+background: transparent;
+box-shadow: -15px 0 0 0 var(--prymary-color);
+}
+.login-form {
+display: flex;
+flex-direction: column;
+margin-top: clamp(0.5rem, 3vw, 3rem);
+font-size: clamp(0.8rem, 3vw, 1rem);
+gap:1rem;
+}
+.input-wrapper{
+display: flex;
+position: relative;
+flex-direction: column;
+}	
+.input-field{
+width: 100%;
+padding: 0.5rem;
+border:2px solid var(--prymary-color);
+border-radius: 30px;
+outline: none;
+background: transparent;
+color:var(--secondary-color);
+}
+.label{
+position: absolute;
+top: 50%;
+left: 5%;
+transform: translateY(-50%);
+transition: 0.2s;
+}
+.input-field:focus~.label,
+.input-field:valid~.label{
+position: absolute;
+top: 0%;
+left: 0%;
+padding: 0 10px;
+border-radius: 30px;
+background-color: var(--prymary-color);
+color: white;
+}
+.icon{
+	position: absolute;
+	top: 10px;  /* Ajusta la distancia desde el borde superior */
+	right: 15px; /* Ajusta la distancia desde el borde derecho */
+	font-size: 20px;  /* Tamaño del ícono */
+	 
+}
+.toggle-password {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+.login-check{
+display: flex;
+flex-direction: column;
+align-items: center;
+gap:0.5rem;
+}
+.forgot {
+font-size: clamp(0.7rem, 2vw, 0.8rem);
+}
+.input-login{
+width: 100%;
+padding: 0.6rem;
+border: none;
+border-radius:30px;
+background: #d4d1d4;
+font-size: clamp(1rem, 3vw, 1.3rem);
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+}
+.input-login:hover{
+background: var(--primary-color);
+}	
+.register{
+text-align: center;
+}	
+.register a{
+font-weight: 500;	
+}	
+
