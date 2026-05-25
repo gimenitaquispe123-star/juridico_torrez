@@ -24,7 +24,6 @@ class ExpedienteDigitalizadoController extends Controller
         'expediente'
     ]);
 
-    // SI ES ABOGADO → SOLO VE SUS EXPEDIENTES
     if ($user->rol === 'abogado') {
 
         $query->whereHas('expediente.abogadoAsignado', function ($q) use ($user) {
@@ -130,7 +129,7 @@ public function store(Request $request)
    
     $request->validate([
         'id_cliente'        => 'required|exists:personas,id',
-        'id_expediente'     => 'required|exists:expedientes,id',
+        'id_expediente'     => 'required|exists:expedientes,id|unique:expedientes_digitalizados,id_expediente',
         'nro_expediente'    => 'required|string|max:255',
         'tipo_expediente'   => 'required|string|max:255',
         'texto_expediente'  => 'nullable|string|max:1000',

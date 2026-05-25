@@ -37,14 +37,10 @@ class Expediente extends Model
         return $this->belongsTo(Persona::class, 'id_cliente');
     }
 
-
-
-
     public function getEstadoTextoAttribute()
     {
         return $this->estado ? 'Activo' : 'Inactivo';
     }
-
 
     public function usuarioReg()
 {
@@ -62,10 +58,11 @@ public function documentos()
 }
 
 
-
 public function abogadoAsignado()
 {
     return $this->hasOne(\App\Models\AbogadoExpediente::class, 'id_expediente', 'id')
                 ->where('estado', 1);
 }
+
+
 }

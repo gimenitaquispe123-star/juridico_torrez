@@ -34,8 +34,7 @@ public function index(Request $request)
         'expediente.abogadoAsignado.empleado'
     ]);
 
-    if ($user->rol === 'abogado') {
-
+    if (strtolower($user->rol) === 'abogado') {
         $query->whereHas('expediente.abogadoAsignado', function ($q) use ($user) {
             $q->where('id_empleado', $user->persona_id)
               ->where('estado', 1); 
@@ -92,15 +91,26 @@ public function create()
     $estados = EstadoProceso::orderBy('estado_proceso')->get();
     $posiciones = Posicion::orderBy('nombre')->get();
 
-    $expedientes = Expediente::with('abogadoAsignado')
-        ->when($user->rol === 'abogado', function ($query) use ($user) {
-            $query->whereHas('abogadoAsignado', function ($q) use ($user) {
-                $q->where('id_empleado', $user->persona_id)
-                  ->where('estado', 1);
-            });
-        })
+  if (strtolower($user->rol) === 'abogado') {
+
+    $expedientes = Expediente::whereIn('id', function ($query) use ($user) {
+
+        $query->select('id_expediente')
+              ->from('abogado_expedientes')
+              ->where('id_empleado', $user->persona_id)
+              ->where('estado', 1);
+
+    })
+    ->with(['cliente', 'abogadoAsignado'])
+    ->orderByDesc('id')
+    ->get();
+
+} else {
+
+    $expedientes = Expediente::with(['cliente', 'abogadoAsignado'])
         ->orderByDesc('id')
         ->get();
+}
 
     return view('procesos.create', compact(
         'clientes',

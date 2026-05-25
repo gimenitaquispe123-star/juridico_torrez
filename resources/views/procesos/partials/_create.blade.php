@@ -117,20 +117,24 @@
     <div class="form-group">
         <label for="id_expediente">Expediente Asociado</label>
 
-        <select name="id_expediente"
-                class="form-control @error('id_expediente') is-invalid @enderror"
-                required>
+      <select name="id_expediente"
+        id="id_expediente"
+        class="form-control @error('id_expediente') is-invalid @enderror"
+        required>
 
-            <option value="">Seleccione expediente...</option>
+    <option value="">Seleccione expediente...</option>
 
-            @foreach($expedientes as $exp)
-                <option value="{{ $exp->id }}"
-                    {{ old('id_expediente') == $exp->id ? 'selected' : '' }}>
-                    {{ $exp->nro_expediente }} -
-                    {{ $exp->cliente->nombre_completo ?? 'Sin cliente' }}
-                </option>
-            @endforeach
-        </select>
+    @foreach($expedientes as $exp)
+        <option value="{{ $exp->id }}"
+            {{ old('id_expediente') == $exp->id ? 'selected' : '' }}>
+
+            {{ $exp->nro_expediente }} -
+            {{ $exp->cliente->nombre_completo ?? 'Sin cliente' }}
+
+        </option>
+    @endforeach
+
+</select>
 
         @error('id_expediente')
             <div class="text-danger">
